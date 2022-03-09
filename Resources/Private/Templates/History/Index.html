@@ -2,6 +2,9 @@
 {namespace fusion=Neos\Fusion\ViewHelpers}
 {namespace m=Neos\Media\ViewHelpers}
 {namespace neos=Neos\Neos\ViewHelpers}
+{namespace twbs=Neos\Twitter\Bootstrap\ViewHelpers}
+
+<twbs:include version="2.3" includeJQuery="{true}" jQueryVersion="2.0.2" />
 
 <div class="neos-history">
     <legend>{neos:backend.translate(
@@ -354,7 +357,7 @@
 </f:if>
 
 <script>
-    $(function () {
+    jQuery(function ($) {
         var $historyContainer,
             $loadMore,
             nextPage
@@ -389,37 +392,27 @@
                     } else {
                         $historyContainer.append(day);
                     }
-                    initializeBootstrap();
                 });
+
+                initializeBootstrap();
             });
         });
 
         var initializeBootstrap = function () {
-            require(
-                {
-                    baseUrl: 'resource://Neos.Neos/Public/JavaScript',
-                    paths: requirePaths,
-                    context: 'neos',
-                    locale: 'en',
-                },
-                ['Library/jquery-with-dependencies'],
-                function ($) {
-                    $('[data-neos-toggle="popover"]').popover();
-                    $('[data-neos-toggle="tooltip"]').tooltip();
-                    $('[data-neos-toggle]').on('click', function () {
-                        $('[data-neos-toggle]').not(this).popover('hide');
-                    });
-                    $('body').on('click', function (e) {
-                        let $target = $(e.target);
-                        if ($target.data('neos-toggle') !== 'popover' &&
-                            $target.parents('[data-neos-toggle="popover"]').length === 0 &&
-                            $target.parents('.neos-popover.neos-in').length === 0
-                        ) {
-                            $('[data-neos-toggle]').popover('hide');
-                        }
-                    });
-                },
-            );
+            $('[data-neos-toggle="popover"]').popover();
+            $('[data-neos-toggle="tooltip"]').tooltip();
+            $('[data-neos-toggle]').on('click', function () {
+                $('[data-neos-toggle]').not(this).popover('hide');
+            });
+            $('body').on('click', function (e) {
+                let $target = $(e.target);
+                if ($target.data('neos-toggle') !== 'popover' &&
+                    $target.parents('[data-neos-toggle="popover"]').length === 0 &&
+                    $target.parents('.neos-popover.neos-in').length === 0
+                ) {
+                    $('[data-neos-toggle]').popover('hide');
+                }
+            });
         };
 
         initializeBootstrap();

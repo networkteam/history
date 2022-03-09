@@ -154,11 +154,28 @@ $wideMargin: 32px;
                         user-select: none;
                     }
 
-                    .neos-popover {
+                    .popover {
+                        background-color: $grayMedium;
+                        border-color: $grayLight;
+                        border-radius: 0;
+
+                        &.bottom .arrow {
+                            top: -10px;
+                            &::after {
+                                border-bottom-color: $grayDark;
+                            }
+                        }
+
+                        max-width: 600px;
                         width: 600px;
 
-                        .neos-popover-title i {
-                            vertical-align: top;
+                        .popover-title {
+                            background-color: $grayDark;
+                            border-bottom-color: $grayLight;
+                            border-radius: 0;
+                            i {
+                                vertical-align: top;
+                            }
                         }
 
                         table {

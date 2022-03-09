@@ -15,7 +15,8 @@
         }
     ],
     "require": {
-        "neos/neos": ">3"
+        "neos/neos": ">3",
+        "neos/twitter-bootstrap": "*"
     },
     "autoload": {
         "psr-4": {
