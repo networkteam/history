@@ -49,7 +49,7 @@ export default class NodeInfoView extends PureComponent {
                     <div className={style.nodeInfoView__title}>{i18nRegistry.translate('lastModification', 'Last modification', {}, 'Neos.Neos')}</div>
                     <NodeInfoViewContent>
                         {!nodeTypesRegistry.isOfType(nodeType, 'Neos.Neos:Document') ? new Date(properties.lastModification).toLocaleString() : (
-                            <a href={`/neos/management/history/?moduleArguments%5Bnode%5D=${properties.identifier}`} className={style.link}>
+                            <a href={`/neos/management/history/?moduleArguments%5BnodeIdentifier%5D=${properties.identifier}`} className={style.link}>
                                 {new Date(properties.lastModification).toLocaleString()}
                             </a>
                         )}
